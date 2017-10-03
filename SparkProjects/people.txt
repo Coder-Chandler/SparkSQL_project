@@ -1,0 +1,7 @@
+1,Jhon,20
+2,Lily,25
+3,Lucy,13
+4,James,17
+5,Jerry,17
+5,Monet,17
+5,Van Gogh,25
