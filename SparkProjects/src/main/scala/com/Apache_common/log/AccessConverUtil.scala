@@ -8,17 +8,13 @@ import org.apache.spark.sql.types._
   */
 object AccessConverUtil {
   //定义的输出的字段
-  val struct = StructType(
-    Array(
+  val struct = StructType (
+    Array (
       StructField("traffic",LongType),
       StructField("ip", StringType),
       StructField("city", StringType),
       StructField("time", StringType),
-      StructField("pv", LongType),
-      StructField("upv", LongType),
-      StructField("ip_num", LongType),
-      StructField("register_num", LongType),
-      StructField("bounces", LongType)
+      StructField("day", StringType),
     )
   )
 
@@ -35,13 +31,9 @@ object AccessConverUtil {
       val ip = splits(2)
       val city = ""
       val time = splits(0)
-      val pv = 0.toLong
-      val upv = 0.toLong
-      val ip_num = 0.toLong
-      val register_num = 0.toLong
-      val bounces = 0.toLong
+      val day = time.substring(0,10).replaceAll("-", "")
 
-      Row(traffic, ip, city, time, pv, upv, ip_num, register_num, bounces)
+      Row(traffic, ip, city, time, day)
     } catch {
       case e: Exception => Row(0)
     }

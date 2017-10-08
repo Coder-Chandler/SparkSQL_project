@@ -18,7 +18,7 @@ object SparkStartCleanJob {
 
     accessDF.printSchema()
 
-    accessDF.show(10)
+    accessDF.show(false)
 
     spark.stop()
   }
