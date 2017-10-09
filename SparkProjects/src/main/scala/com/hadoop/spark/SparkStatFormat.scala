@@ -23,10 +23,11 @@ object SparkStatFormat {
         val time = splits(3)+" "+splits(4)
         val time_format = DataUtils.parse(time)
         val url = splits(6)
-        val traffic = splits(9)
-        time_format + "\t" + url + "\t" + ip + "\t" + traffic
+        val status = splits(8).replaceAll(" ", "")
+        val traffic = splits(9).replaceAll("-", "")
+        time_format + "\t" + url + "\t" + ip + "\t" + traffic + "\t" + status
       }
-    }).saveAsTextFile("hdfs://localhost:8020/WEB_log/Apache_common/clean_data")
+    }).saveAsTextFile("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_1")
     spark.stop()
   }
 }

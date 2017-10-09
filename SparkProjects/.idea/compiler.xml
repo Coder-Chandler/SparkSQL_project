@@ -2,7 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <excludeFromCompile>
-      <file url="file://$PROJECT_DIR$/src/main/scala/com/Apache_common/log/AccessConverUtil.scala" />
+      <file url="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/AccessConverUtil.scala" />
     </excludeFromCompile>
     <annotationProcessing>
       <profile name="Maven default annotation processors profile" enabled="true">
