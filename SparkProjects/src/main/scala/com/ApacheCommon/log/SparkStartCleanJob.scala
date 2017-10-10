@@ -18,13 +18,22 @@ object SparkStartCleanJob {
       Info(
       line(1), line(3).toLong, line(4).toInt, line(2), IpUtils.getCity(line(2)), line(0), line(0).substring(0,10).replaceAll("-", "")
     )} else {
-      Info("",0, 0, "","","","")
+      Info("", 0, 0, "", "", "", "")
     }).toDF()
 
-    //accessDF.filter("url='' or ip='' or city='' or time='' or day=''").show(false)
+    val accessDFclean = accessDF.filter("url!='' or ip!='' or city!='' or time!='' or day!=''")
+
     //测试用代码
-    accessDF.printSchema()
-    accessDF.show(false)
+    //查看缺失值
+    //accessDFclean.filter("url=='' or ip=='' or city=='' or time=='' or day==''").show()
+    //查看traffic正常的数据个数
+    //println(accessDFclean.filter("traffic!=0").count())
+    //accessDF.printSchema()
+    //accessDF.show(false)
+
+    accessDFclean.filter("traffic==0").coalesce(1).write.format("csv")
+     .mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
+
 
     //以parquet的格式将清洗过的数据按照day分区存入HDFS里面去，注意coalesce表示输出为一个文件，这也是一个调优点
     //accessDF.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
