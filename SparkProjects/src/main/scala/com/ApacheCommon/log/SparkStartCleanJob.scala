@@ -1,6 +1,6 @@
 package com.ApacheCommon.log
 import org.apache.spark.sql.{SaveMode, SparkSession}
-
+import org.apache.spark.sql.functions._
 /**
   * 使用Spark完成我们的数据清洗工作
   */
@@ -39,11 +39,12 @@ object SparkStartCleanJob {
       //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
 
 
-    accessDFclean.filter("traffic > 0").filter("traffic < 50000").orderBy("traffic")
-      .coalesce(1).write.format("csv").mode(SaveMode.Overwrite).partitionBy("day")
-      .save("/Users/chandler/Desktop/status_test")
-    //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
-    //accessDFclean.filter("traffic > 0").filter("traffic < 50000").describe("traffic").show(false)
+//    accessDFclean.filter("traffic > 0").filter("traffic < 50000").orderBy("traffic").show(false)
+//    accessDFclean.filter("traffic > 0").filter("traffic < 50000").describe("traffic").show(false)
+
+    val times = accessDFclean.filter($"day" === "20130530" && $"traffic" === 0).groupBy("day", "url").agg(count("traffic").as("times")).
+      orderBy($"times")
+    times.filter("times == 0 ").show(false)
 
     //以parquet的格式将清洗过的数据按照day分区存入HDFS里面去，注意coalesce表示输出为一个文件，这也是一个调优点
 //    accessDF.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
