@@ -10,7 +10,7 @@ object SparkStartCleanJob {
       .master("local[2]").getOrCreate()
 
     //把我们第一步清洗的log读进来
-    val accessRDD = spark.sparkContext.textFile("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_1/part-00000")
+    val accessRDD = spark.sparkContext.textFile("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_1/data_1")
 
     //导入隐式转换
     import spark.implicits._
@@ -27,17 +27,27 @@ object SparkStartCleanJob {
     //查看缺失值
     //accessDFclean.filter("url=='' or ip=='' or city=='' or time=='' or day==''").show()
     //查看traffic正常的数据个数
-    //println(accessDFclean.filter("traffic!=0").count())
+    //println(accessDFclean.filter("traffic==0").count())
+    //查看schema信息
     //accessDF.printSchema()
+    //打印前20条数据
     //accessDF.show(false)
 
-    accessDFclean.filter("traffic==0").coalesce(1).write.format("csv")
-     .mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
+//    println(accessDF.filter("traffic >= 50000").count())
+    //如果需要进行机器学习预测缺失值，以下可单独导出训练数据和测试数据
+    //accessDFclean.filter("traffic==0").coalesce(1).write.format("csv")
+      //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
 
+
+    accessDFclean.filter("traffic > 0").filter("traffic < 50000").orderBy("traffic")
+      .coalesce(1).write.format("csv").mode(SaveMode.Overwrite).partitionBy("day")
+      .save("/Users/chandler/Desktop/status_test")
+    //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/status_test")
+    //accessDFclean.filter("traffic > 0").filter("traffic < 50000").describe("traffic").show(false)
 
     //以parquet的格式将清洗过的数据按照day分区存入HDFS里面去，注意coalesce表示输出为一个文件，这也是一个调优点
-    //accessDF.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
-      //.partitionBy("day").save("/Users/chandler/Desktop/test/apache")
+//    accessDF.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
+//      .partitionBy("day").save("hdfs://localhost:8020/WEB_log/Apache_common/claen_data_2")
 
     spark.stop()
   }
