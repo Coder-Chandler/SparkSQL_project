@@ -27,7 +27,7 @@ object SparkStatFormat {
         val traffic = splits(9).replaceAll("-", "0")
         time_format + "\t" + url + "\t" + ip + "\t" + traffic + "\t" + status
       }
-    }).saveAsTextFile("/Users/chandler/Desktop/test/clen_data_1")
+    }).saveAsTextFile("hdfs://localhost:8020/WEB_log/Apache_common/clen_data_1")
     spark.stop()
   }
 }
