@@ -21,8 +21,6 @@ object SparkStartCleanJob {
       Info("", 0, "", "", "", "")
     }).toDF()
 
-    val accessDFclean = accessDF.filter("url!='' or ip!='' or city!='' or time!='' or day!=''")
-
     //测试用代码
     //查看缺失值
     //accessDFclean.filter("url=='' or ip=='' or city=='' or time=='' or day==''").show()
@@ -32,25 +30,20 @@ object SparkStartCleanJob {
     //accessDF.printSchema()
     //打印前20条数据
     //accessDF.show(false)
+    //accessDFclean.filter("traffic > 0").filter("traffic < 50000").orderBy("traffic").show(false)
+    //accessDFclean.filter("traffic > 0").filter("traffic < 50000").describe("traffic").show(false)
 
-//    println(accessDF.filter("traffic >= 50000").count())
-    //如果需要进行机器学习预测缺失值，以下可单独导出训练数据和测试数据
+    val accessDFclean = accessDF.filter("url!='' or ip!='' or city!='' or time!='' or day!='' or traffic!=0")
+
     accessDFclean.coalesce(1).write.format("csv")
       .mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/log_test")
 
-
-//    accessDFclean.filter("traffic > 0").filter("traffic < 50000").orderBy("traffic").show(false)
-//    accessDFclean.filter("traffic > 0").filter("traffic < 50000").describe("traffic").show(false)
-
-    val tmpaccessDF = accessDFclean.filter("traffic!=0")
-    val statistics = tmpaccessDF.filter($"day" === "20130530")
+    val statistics = accessDFclean.filter($"day" === "20130530")
       .groupBy("day", "url")
       .agg(sum("traffic").as("sums"),count("traffic").as("times"),
         (sum("traffic")/count("traffic")).as("avg(sums/times)"))
       .orderBy($"sums")
-
-
-
+    
     //以parquet的格式将清洗过的数据按照day分区存入HDFS里面去，注意coalesce表示输出为一个文件，这也是一个调优点
 //    accessDF.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
 //      .partitionBy("day").save("hdfs://localhost:8020/WEB_log/Apache_common/claen_data_2")
