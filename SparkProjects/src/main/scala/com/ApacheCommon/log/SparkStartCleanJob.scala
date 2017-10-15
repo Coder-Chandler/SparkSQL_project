@@ -37,8 +37,6 @@ object SparkStartCleanJob {
 
     val accessdataframe = accessDFclean.filter("traffic!=0")
 
-    println(accessdataframe.filter("traffic>33000").count())
-    accessdataframe.filter("traffic>33000").orderBy(accessdataframe("traffic").desc).show(1000, false)
     //以csv的格式写入到本地
     //accessdataframe.coalesce(1).write.format("csv")
       //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/log_test")

@@ -196,6 +196,7 @@
     <orderEntry type="library" name="Maven: org.datanucleus:datanucleus-core:3.2.10" level="project" />
     <orderEntry type="library" name="Maven: org.apache.thrift:libthrift:0.9.3" level="project" />
     <orderEntry type="library" name="Maven: org.apache.thrift:libfb303:0.9.3" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.38" level="project" />
     <orderEntry type="library" name="Maven: com.ggstar:ipdatabase:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml:3.14" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi-ooxml-schemas:3.14" level="project" />

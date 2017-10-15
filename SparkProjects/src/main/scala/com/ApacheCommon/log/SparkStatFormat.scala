@@ -1,4 +1,5 @@
-package com.hadoop.spark
+package com.ApacheCommon.log
+
 import org.apache.spark.sql.SparkSession
 /**
   * 第一步清洗：抽取我们所需要的指定列的数据

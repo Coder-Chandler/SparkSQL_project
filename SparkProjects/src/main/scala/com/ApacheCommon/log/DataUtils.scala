@@ -1,7 +1,7 @@
-package com.hadoop.spark
-import java.text.SimpleDateFormat
-import java.util.Locale
-import java.util.Date
+package com.ApacheCommon.log
+
+import java.util.{Date, Locale}
+
 import org.apache.commons.lang3.time.FastDateFormat
 /**
   * 日期时间解析工具类

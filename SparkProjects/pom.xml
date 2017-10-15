@@ -60,6 +60,12 @@
     </dependency>
 
     <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.38</version>
+    </dependency>
+
+    <dependency>
       <groupId>com.ggstar</groupId>
       <artifactId>ipdatabase</artifactId>
       <version>1.0</version>
