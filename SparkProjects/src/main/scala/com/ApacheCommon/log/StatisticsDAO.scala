@@ -129,4 +129,31 @@ object StatisticsDAO {
       MySQLUtils.release(connection, pstmt)
     }
   }
+
+  /**
+    * 删除指定日期的数据
+    */
+  def deleteData(day: String): Unit = {
+
+    val tables = Array("ip_statistics",
+      "day_url_pv_traffic",
+      "url_city_statistics")
+
+    var connection: Connection = null
+    var pstmt: PreparedStatement = null
+    try {
+      connection = MySQLUtils.getConnection()
+
+      for(table <- tables) {
+        val deleteSQL = s"delete from $table where day = ?"
+        pstmt = connection.prepareStatement(deleteSQL)
+        pstmt.setString(1, day)
+        pstmt.executeUpdate()
+      }
+    } catch {
+      case e: Exception => e.printStackTrace()
+    } finally {
+      MySQLUtils.release(connection, pstmt)
+    }
+  }
 }
