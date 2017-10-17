@@ -12,7 +12,7 @@
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="main" style="width: 600px;height:400px;"></div>
-    {% for traffics in traffic_sums %}
+    {% for test in traffic %}
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -39,21 +39,11 @@
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:(function () {
-                        var urls = [];
-                        $.ajax({
-                            type:"GET",
-                            url: "{% url 'index' %}",
-                            dataType: "json",
-                            async: false,
-                            success: function (result) {
-                                for(var i=0; i<result.length; i++){
-                                    urls.push({"value":result[i].value, "name":result[i].name})
-                                }
-                            }
-                        })
-                        return urls
-                    })(),
+                    data:[
+                        {value:{{ test.traffic_sums }}, name:'直接访问'},
+                        {value:{{ test.traffic_sums }}, name:'邮件营销'},
+                        {value:{{ test.traffic_sums }}, name:'联盟广告'}
+                    ],
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,

@@ -11,14 +11,14 @@ class IndexView(View):
     def get(self, request):
         day = day_url_pv_traffic.objects.all()
         url = day_url_pv_traffic.objects.all()
-        traffic_sums = day_url_pv_traffic.objects.all().order_by("-traffic_sums")[:10]
+        traffic = day_url_pv_traffic.objects.all().order_by("-traffic_sums")[:10]
         page_view = day_url_pv_traffic.objects.all()
         avg = day_url_pv_traffic.objects.all()
-        data_box = []
+        data_box = [day, url, traffic, page_view, avg]
         return render(request, 'index.html', {
             'day': day,
             'url': url,
-            'traffic_sums': traffic_sums,
+            'traffic': traffic,
             'page_view': page_view,
             'avg': avg,
         })
