@@ -31,7 +31,7 @@
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                data: []
             },
             series : [
                 {
@@ -39,11 +39,21 @@
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:{{ test.traffic_sums }}, name:'直接访问'},
-                        {value:{{ test.traffic_sums }}, name:'邮件营销'},
-                        {value:{{ test.traffic_sums }}, name:'联盟广告'}
-                    ],
+                    data:(function(){
+                        var urls = [];
+                        $.ajax({
+                            type: "GET",
+                            url: "{% url 'index' %}",
+                            dataType: 'json',
+                            async: false,
+                            success:function (result) {
+                                for(var i=0; i<result.length; i++) {
+                                    urls.push({"value":result[i].value, "name":result[i].name})
+                                }
+                            }
+                        })
+                        return urls;
+                    })(),
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
