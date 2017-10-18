@@ -23,6 +23,16 @@ class DayUrlPvTraffic(models.Model):
         unique_together = (('day', 'url'),)
 
 
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations'
+
+
 class IpStatistics(models.Model):
     day = models.CharField(max_length=8)
     ip = models.CharField(max_length=100)
