@@ -57,19 +57,44 @@ class Charts(APIView):
         page_view_pvtr_data = y_pv_pvtr
 
         # IpStatistics
-        ip_orderby_traffic = IpStatistics.objects.values("ip").order_by("-traffic_sums")[:8]
-        ip_orderby_pageview = IpStatistics.objects.values("ip").order_by("-traffic_sums")[:8]
+        ip_orderby_traffic = IpStatistics.objects.values("ip").order_by("-traffic_sums")[:6]
+        ip_orderby_pageview = IpStatistics.objects.values("ip").order_by("-page_view")[:6]
 
-        traffic_ip = IpStatistics.objects.values("traffic_sums").order_by("-traffic_sums")[:8]
-        page_views_ip = IpStatistics.objects.values("page_view").order_by("-page_view")[:8]
+        traffic_ip = IpStatistics.objects.values("traffic_sums").order_by("-traffic_sums")[:6]
+        page_views_ip = IpStatistics.objects.values("page_view").order_by("-page_view")[:6]
+
+        x_ip_traffic_ipstat = []
+        x_ip_pageview_ipstat = []
+
+        y_traffic_ipstat = []
+        y_pageview_ipstat = []
+
+        for i in ip_orderby_traffic:
+            x_ip_traffic_ipstat.append(i.get("ip", "get ip failed"))
+        for i in ip_orderby_pageview:
+            x_ip_pageview_ipstat.append(i.get("ip", "get ip failed"))
+
+        for j in traffic_ip:
+            y_traffic_ipstat.append(j.get("traffic_sums", 0))
+        for j in page_views_ip:
+            y_pageview_ipstat.append(j.get("page_view", 0))
+
+        ip_traffic_ipstat_data = x_ip_traffic_ipstat
+        ip_page_view_ipstat_data = x_ip_pageview_ipstat
+        traffic_ipstat_data = y_traffic_ipstat
+        page_view_ipstat_data = y_pageview_ipstat
 
         # UrlCityStatistics
-
 
         data = {
             "url_traffic_data": url_traffic_pvtr_data,
             "url_page_view_data": url_page_view_pvtr_data,
             "traffic_data": traffic_pvtr_data,
             "page_view_data": page_view_pvtr_data,
+
+            "ip_traffic_ipstat_data": ip_traffic_ipstat_data,
+            "ip_page_view_ipstat_data": ip_page_view_ipstat_data,
+            "traffic_ipstat_data": traffic_ipstat_data,
+            "page_view_ipstat_data": page_view_ipstat_data,
         }
         return Response(data)

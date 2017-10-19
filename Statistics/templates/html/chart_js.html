@@ -20,6 +20,23 @@
             <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的url（条形图）</p>
             <canvas id="pageView_bar" width="400" height="400"></canvas>
         </div>
+
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的ip（南丁格尔图）</p>
+            <canvas id="ipTraffic_polarArea" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的ip（条形图）</p>
+            <canvas id="ipTraffic_bar" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的ip（南丁格尔图）</p>
+            <canvas id="ipPageView_polarArea" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的ip（条形图）</p>
+            <canvas id="ipPageView_bar" width="400" height="400"></canvas>
+        </div>
     </div>
 </div>
 
@@ -28,18 +45,31 @@
 <script>
 {% block jquery %}
 var endpoint = '{% url 'charts' %}'
-var trafficData = []
-var pageViewData = []
-var urlTrafficData = []
-var urlPageViewData = []
+var y_traffic_url = []
+var y_pageview_url = []
+var x_url_traffic = []
+var x_url_pageview = []
+
+var y_traffic_ip = []
+var y_pageview_ip = []
+var x_ip_traffic = []
+var x_ip_pageview = []
+
+
 $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data){
-        urlTrafficData = data.url_traffic_data
-        urlPageViewData = data.url_page_view_data
-        trafficData = data.traffic_data
-        pageViewData = data.page_view_data
+        x_url_traffic = data.url_traffic_data
+        x_url_pageview = data.url_page_view_data
+        y_traffic_url = data.traffic_data
+        y_pageview_url = data.page_view_data
+
+        y_traffic_ip = data.traffic_ipstat_data
+        y_pageview_ip = data.page_view_ipstat_data
+        x_ip_traffic = data.ip_traffic_ipstat_data
+        x_ip_pageview = data.ip_page_view_ipstat_data
+
         setChart()
     },
     error: function(error_data){
@@ -54,14 +84,19 @@ function setChart(){
     var ctx3 = document.getElementById("pageView_polarArea");
     var ctx4 = document.getElementById("pageView_bar");
 
+    var ctx5 = document.getElementById("ipTraffic_polarArea");
+    var ctx6 = document.getElementById("ipTraffic_bar");
+    var ctx7 = document.getElementById("ipPageView_polarArea");
+    var ctx8 = document.getElementById("ipPageView_bar");
+
     var traffic_polarArea = new Chart(ctx, {
     type: 'polarArea',
     data: {
-        labels: urlTrafficData,
+        labels: x_url_traffic,
 
         datasets: [{
             label: '# of Votes',
-            data: trafficData,
+            data: y_traffic_url,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -98,10 +133,10 @@ function setChart(){
     var traffic_bar = new Chart(ctx2, {
     type: 'bar',
     data: {
-        labels: urlTrafficData,
+        labels: x_url_traffic,
         datasets: [{
             label: '# of Votes',
-            data: trafficData,
+            data: y_traffic_url,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -135,14 +170,13 @@ function setChart(){
         }
     }
 });
-
     var pageView_polarArea = new Chart(ctx3, {
     type: 'polarArea',
     data: {
-        labels: urlPageViewData,
+        labels: x_url_pageview,
         datasets: [{
             label: '# of Votes',
-            data: pageViewData,
+            data: y_pageview_url,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -179,10 +213,171 @@ function setChart(){
     var pageView_bar = new Chart(ctx4, {
     type: 'bar',
     data: {
-        labels: urlPageViewData,
+        labels: x_url_pageview,
         datasets: [{
             label: '# of Votes',
-            data: pageViewData,
+            data: y_pageview_url,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                }
+            }]
+        }
+    }
+});
+
+    var ipTraffic_polarArea = new Chart(ctx5, {
+    type: 'polarArea',
+    data: {
+        labels: x_ip_traffic,
+        datasets: [{
+            label: '# of Votes',
+            data: y_traffic_ip,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    var ipTraffic_bar = new Chart(ctx6, {
+    type: 'bar',
+    data: {
+        labels: x_ip_traffic,
+        datasets: [{
+            label: '# of Votes',
+            data: y_traffic_ip,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                }
+            }]
+        }
+    }
+});
+    var ipPageView_polarArea = new Chart(ctx7, {
+    type: 'polarArea',
+    data: {
+        labels: x_ip_pageview,
+        datasets: [{
+            label: '# of Votes',
+            data: y_pageview_ip,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    var ipPageView_bar = new Chart(ctx8, {
+    type: 'bar',
+    data: {
+        labels: x_ip_pageview,
+        datasets: [{
+            label: '# of Votes',
+            data: y_pageview_ip,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
