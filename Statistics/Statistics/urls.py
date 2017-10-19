@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from DayUrlPvTraffic.views import Charts, HomeView
+from DayUrlPvTraffic.views import Charts, HomeView, ChartJsView, EchartsView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^$', HomeView.as_view(), name='index'),
+    url('^chartjs/$', ChartJsView.as_view(), name='chartjs'),
+    url('^echarts/$', EchartsView.as_view(), name='echarts'),
     url('^charts/$', Charts.as_view(), name='charts'),
 ]
 

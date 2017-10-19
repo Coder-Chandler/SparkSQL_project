@@ -1,0 +1,17 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class='row' style="margin: 0 240px 10px; margin-top: 100px">
+    <div style="float:left">
+        <p style="margin: 0 120px 10px; font-weight: bolder">chartjs</p>
+        <a href="{% url 'chartjs' %}"><img width="300" height="230" src="{% static 'img/chartjs.png' %}" /></a>
+    </div>
+    <div style="float:left;margin-left:40px">
+        <p style="margin: 0 120px 10px; font-weight: bolder">echarts</p>
+        <a href="{% url 'echarts' %}"><img width="300" height="230" src="{% static 'img/echarts.png' %}" /></a>
+    </div>
+</div>
+
+
+{% endblock content %}

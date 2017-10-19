@@ -1,0 +1,321 @@
+{% extends 'html/base.html' %}
+
+{% block content %}
+
+<div class='row'>
+    <div class='col-sm-12' url-endpoint='{% url "index" %}'>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+            <canvas id="traffic_polarArea" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（条形图）</p>
+            <canvas id="traffic_bar" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的url（南丁格尔图）</p>
+            <canvas id="pageView_polarArea" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的url（条形图）</p>
+            <canvas id="pageView_bar" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量均值top6的url（南丁格尔图）</p>
+            <canvas id="avg_polarArea" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量均值top6的url（条形图）</p>
+            <canvas id="avg_bar" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<script>
+{% block jquery %}
+var endpoint = '{% url 'charts' %}'
+var trafficData = []
+var pageViewData = []
+var avgData = []
+var urlTrafficData = []
+var urlPageViewData = []
+var urlAvgData = []
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        urlTrafficData = data.url_traffic_data
+        urlPageViewData = data.url_page_view_data
+        urlAvgData = data.url_avg_data
+        trafficData = data.traffic_data
+        pageViewData = data.page_view_data
+        avgData = data.avg_data
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+function setChart(){
+    var ctx = document.getElementById("traffic_polarArea");
+    var ctx2 = document.getElementById("traffic_bar");
+    var ctx3 = document.getElementById("pageView_polarArea");
+    var ctx4 = document.getElementById("pageView_bar");
+    var ctx5 = document.getElementById("avg_polarArea");
+    var ctx6 = document.getElementById("avg_bar");
+
+    var traffic_polarArea = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        labels: urlTrafficData,
+
+        datasets: [{
+            label: '# of Votes',
+            data: trafficData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    var traffic_bar = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: urlTrafficData,
+        datasets: [{
+            label: '# of Votes',
+            data: trafficData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+    var pageView_polarArea = new Chart(ctx3, {
+    type: 'polarArea',
+    data: {
+        labels: urlPageViewData,
+        datasets: [{
+            label: '# of Votes',
+            data: pageViewData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    var pageView_bar = new Chart(ctx4, {
+    type: 'bar',
+    data: {
+        labels: urlPageViewData,
+        datasets: [{
+            label: '# of Votes',
+            data: pageViewData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                }
+            }]
+        }
+    }
+});
+
+    var avg_polarArea = new Chart(ctx5, {
+    type: 'polarArea',
+    data: {
+        labels: urlAvgData,
+        datasets: [{
+            label: '# of Votes',
+            data: avgData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+    var avg_bar = new Chart(ctx6, {
+    type: 'bar',
+    data: {
+        labels: urlAvgData,
+        datasets: [{
+            label: '# of Votes',
+            data: avgData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(100, 221, 66, 0.2)',
+                'rgba(333, 192, 192, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(100, 221, 66, 1)',
+                'rgba(333, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+}
+// var ctx = document.getElementById("myChart");
+
+{% endblock %}
+</script>
+
+

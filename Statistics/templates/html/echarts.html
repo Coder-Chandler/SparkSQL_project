@@ -1,0 +1,277 @@
+{% extends 'html/base.html' %}
+{% block content %}
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="traffic_polarArea" width="400" height="400"></canvas>
+    </div>
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="traffic_bar" width="400" height="400"></canvas>
+    </div>
+
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="pageView_polarArea" width="400" height="400"></canvas>
+    </div>
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="pageView_bar" width="400" height="400"></canvas>
+    </div>
+
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="avg_polarArea" width="400" height="400"></canvas>
+    </div>
+    <div class='col-sm-6'>
+        <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">占用网络流量top6的url（南丁格尔图）</p>
+        <canvas id="avg_bar" width="400" height="400"></canvas>
+    </div>
+{% endblock %}
+
+
+<script type="text/javascript">
+{% block jquery %}
+var endpoint = '{% url 'charts' %}'
+var trafficData = []
+var pageViewData = []
+var avgData = []
+var urlTrafficData = []
+var urlPageViewData = []
+var urlAvgData = []
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        urlTrafficData = data.url_traffic_data
+        urlPageViewData = data.url_page_view_data
+        urlAvgData = data.url_avg_data
+        trafficData = data.traffic_data
+        pageViewData = data.page_view_data
+        avgData = data.avg_data
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+function setChart() {
+    // 基于准备好的dom，初始化echarts实例
+    var traffic_polarArea = echarts.init(document.getElementById('traffic_polarArea'));
+    var traffic_bar = echarts.init(document.getElementById('traffic_bar'));
+
+    var pageView_polarArea = echarts.init(document.getElementById('pageView_polarArea'));
+    var pageView_bar = echarts.init(document.getElementById('pageView_bar'));
+
+    var avg_polarArea = echarts.init(document.getElementById('avg_polarArea'));
+    var avg_bar = echarts.init(document.getElementById('avg_bar'));
+
+    // 指定图表的配置项和数据
+    var option_traffic_polarArea = {
+        title : {
+        text: '占用网络流量top6',
+        subtext: '真实数据',
+        x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: []
+        },
+
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:(function() {
+                    var data = []
+                    for(var i=0; i<urlTrafficData.length; i++) {
+                        data.push({value: trafficData[i], name: urlTrafficData[i]})
+                    }
+                    return data
+                })(),
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    var option_traffic_bar = {
+        title: {
+            text: '占用网络流量top6'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        grid: {
+            y2: 140
+        },
+        xAxis: {
+            data: urlTrafficData,
+            axisLabel:{
+                 interval:0,//横轴信息全部显示
+                 rotate:30,//-30度角倾斜显示
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: trafficData
+        }]
+    };
+
+    var option_pageView_polarArea = {
+        title : {
+        text: '浏览量top6',
+        subtext: '纯属虚构',
+        x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:(function() {
+                    var data = []
+                    for(var i=0; i<urlTrafficData.length; i++) {
+                        data.push({value: pageViewData[i], name: urlPageViewData[i]})
+                    }
+                    return data
+                })(),
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    var option_pageView_bar = {
+        title: {
+            text: '浏览量top6'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        grid: {
+            y2: 140
+        },
+        xAxis: {
+            data: urlPageViewData,
+            axisLabel:{
+                 interval:0,//横轴信息全部显示
+                 rotate:30,//-30度角倾斜显示
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: pageViewData
+        }]
+    };
+
+    var option_avg_polarArea = {
+        title : {
+        text: '网络流量均值top6',
+        subtext: '纯属虚构',
+        x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:(function() {
+                    var data = []
+                    for(var i=0; i<urlTrafficData.length; i++) {
+                        data.push({value: avgData[i], name: urlAvgData[i]})
+                    }
+                    return data
+                })(),
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    var option_avg_bar = {
+        title: {
+            text: '网络流量均值top6'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        grid: {
+            y2: 140
+        },
+        xAxis: {
+            data: urlAvgData,
+            axisLabel:{
+                 interval:0,//横轴信息全部显示
+                 rotate:30,//-30度角倾斜显示
+            }
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: avgData
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    traffic_polarArea.setOption(option_traffic_polarArea);
+    traffic_bar.setOption(option_traffic_bar);
+
+    pageView_polarArea.setOption(option_pageView_polarArea);
+    pageView_bar.setOption(option_pageView_bar);
+
+    avg_polarArea.setOption(option_avg_polarArea);
+    avg_bar.setOption(option_avg_bar);
+}
+
+    {% endblock %}
+</script>
