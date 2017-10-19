@@ -17,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/DayUrlPvTraffic/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="63" column="90" lean-forward="false" selection-start-line="63" selection-start-column="90" selection-end-line="63" selection-end-column="90" />
+            <state relative-caret-position="73">
+              <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
               <folding>
                 <element signature="e#24#35#0" expanded="true" />
               </folding>
@@ -29,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="echarts.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="echarts.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/html/echarts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="131" column="30" lean-forward="false" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+            <state relative-caret-position="442">
+              <caret line="73" column="20" lean-forward="false" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
               <folding>
                 <element signature="n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#!!top" expanded="false" />
@@ -44,6 +44,10 @@
                 <element signature="n#div#5;n#!!top" expanded="false" />
                 <element signature="n#div#6;n#!!top" expanded="false" />
                 <element signature="n#div#7;n#!!top" expanded="false" />
+                <element signature="e#2227#2810#0#HTML" expanded="false" />
+                <element signature="e#2833#10618#0#HTML" expanded="false" />
+                <element signature="e#3601#4654#0#HTML" expanded="false" />
+                <element signature="e#4685#5199#0#HTML" expanded="false" />
                 <element signature="e#5237#6325#0#HTML" expanded="false" />
                 <element signature="e#6357#6854#0#HTML" expanded="false" />
                 <element signature="e#6894#7943#0#HTML" expanded="false" />
@@ -58,8 +62,8 @@
       <file leaf-file-name="chart_js.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/html/chart_js.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="38" column="14" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="38" selection-end-column="14" />
+            <state relative-caret-position="330">
+              <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -70,6 +74,8 @@
                 <element signature="n#div#5;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#6;n#div#0;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#div#7;n#div#0;n#div#0;n#!!top" expanded="false" />
+                <element signature="e#2278#2862#0#HTML" expanded="false" />
+                <element signature="e#2884#12717#0#HTML" expanded="false" />
                 <element signature="e#3406#4533#0#HTML" expanded="false" />
                 <element signature="e#4574#5694#0#HTML" expanded="false" />
                 <element signature="e#5742#6870#0#HTML" expanded="false" />
@@ -148,10 +154,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="702" />
-    <option name="y" value="66" />
-    <option name="width" value="992" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
     <option name="height" value="804" />
   </component>
   <component name="ProjectView">
@@ -302,7 +307,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="804" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="804" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -666,20 +671,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/DayUrlPvTraffic/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/html/echarts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="63" column="90" lean-forward="false" selection-start-line="63" selection-start-column="90" selection-end-line="63" selection-end-column="90" />
+        <state relative-caret-position="442">
+          <caret line="73" column="20" lean-forward="false" selection-start-line="73" selection-start-column="20" selection-end-line="73" selection-end-column="20" />
           <folding>
-            <element signature="e#24#35#0" expanded="true" />
+            <element signature="n#div#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#p#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#div#5;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#!!top" expanded="false" />
+            <element signature="e#2227#2810#0#HTML" expanded="false" />
+            <element signature="e#2833#10618#0#HTML" expanded="false" />
+            <element signature="e#3601#4654#0#HTML" expanded="false" />
+            <element signature="e#4685#5199#0#HTML" expanded="false" />
+            <element signature="e#5237#6325#0#HTML" expanded="false" />
+            <element signature="e#6357#6854#0#HTML" expanded="false" />
+            <element signature="e#6894#7943#0#HTML" expanded="false" />
+            <element signature="e#7976#8487#0#HTML" expanded="false" />
+            <element signature="e#8527#9612#0#HTML" expanded="false" />
+            <element signature="e#9646#10140#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/html/chart_js.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="38" column="14" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="38" selection-end-column="14" />
+        <state relative-caret-position="330">
+          <caret line="39" column="10" lean-forward="true" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
@@ -690,6 +713,8 @@
             <element signature="n#div#5;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#6;n#div#0;n#div#0;n#!!top" expanded="false" />
             <element signature="n#div#7;n#div#0;n#div#0;n#!!top" expanded="false" />
+            <element signature="e#2278#2862#0#HTML" expanded="false" />
+            <element signature="e#2884#12717#0#HTML" expanded="false" />
             <element signature="e#3406#4533#0#HTML" expanded="false" />
             <element signature="e#4574#5694#0#HTML" expanded="false" />
             <element signature="e#5742#6870#0#HTML" expanded="false" />
@@ -702,26 +727,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/html/echarts.html">
+    <entry file="file://$PROJECT_DIR$/app/DayUrlPvTraffic/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="131" column="30" lean-forward="false" selection-start-line="131" selection-start-column="30" selection-end-line="131" selection-end-column="30" />
+        <state relative-caret-position="73">
+          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding>
-            <element signature="n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#p#0;n#div#4;n#!!top" expanded="true" />
-            <element signature="n#div#5;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#!!top" expanded="false" />
-            <element signature="n#div#7;n#!!top" expanded="false" />
-            <element signature="e#5237#6325#0#HTML" expanded="false" />
-            <element signature="e#6357#6854#0#HTML" expanded="false" />
-            <element signature="e#6894#7943#0#HTML" expanded="false" />
-            <element signature="e#7976#8487#0#HTML" expanded="false" />
-            <element signature="e#8527#9612#0#HTML" expanded="false" />
-            <element signature="e#9646#10140#0#HTML" expanded="false" />
+            <element signature="e#24#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
