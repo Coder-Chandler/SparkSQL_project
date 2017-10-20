@@ -37,8 +37,14 @@
             <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">浏览量top6的ip（条形图）</p>
             <canvas id="ipPageView_bar" width="400" height="400"></canvas>
         </div>
+
+        <div class='col-sm-6'>
+            <p style="font-weight:bolder;font-family: 'Al Bayan'; color: mediumblue">区域访问量（条形图）</p>
+            <canvas id="PageViewCity_bar" width="600" height="400"></canvas>
+        </div>
     </div>
 </div>
+
 
 {% endblock content %}
 
@@ -88,6 +94,8 @@ function setChart(){
     var ctx6 = document.getElementById("ipTraffic_bar");
     var ctx7 = document.getElementById("ipPageView_polarArea");
     var ctx8 = document.getElementById("ipPageView_bar");
+
+    var ctx9 = document.getElementById("PageViewCity_bar");
 
     var traffic_polarArea = new Chart(ctx, {
     type: 'polarArea',
@@ -400,6 +408,37 @@ function setChart(){
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                }
+            }]
+        }
+    }
+});
+
+    var PageViewCity_bar = new Chart(ctx9, {
+    type: 'bar',
+    data: {
+        labels : ["January","February","March","April","May","June","July","January","February","March","April","May","June","July","January","February","March","April","May","June","July","January","February","March","April","May","June","July"],
+        datasets : [
+
+            {   backgroundColor:"rgba(255, 99, 132, 0.6)",
+                label: '# of Votes',
+                data : [65,59,90,81,56,55,40,65,59,90,81,56,55,40,65,59,90,81,56,55,40,65,59,90,81,56,55,40]
+            },
+            {
+                backgroundColor:"rgba(54, 162, 235, 0.6)",
+                label: '# of Votes',
+                data : [65,59,90,81,56,55,40,65,59,90,81,56,55,40,65,59,90,81,56,55,40,65,59,90,81,56,55,40]
+            },
+            {
+                backgroundColor:"rgba(255, 206, 86, 0.6)",
+                data : [28,48,40,19,96,27,100,65,59,90,81,56,55,40,65,59,90,81,56,55,40,65,59,90,81,56,55,40]
+            }]
     },
     options: {
         scales: {

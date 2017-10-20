@@ -5,6 +5,7 @@ from django.views.generic.base import View
 from models import DayUrlPvTraffic, IpStatistics, UrlCityStatistics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from utils.helper import format_data
 
 
 class HomeView(View):
@@ -85,6 +86,19 @@ class Charts(APIView):
         page_view_ipstat_data = y_pageview_ipstat
 
         # UrlCityStatistics
+        url_city = UrlCityStatistics.objects.values("city", "url", "page_view").order_by("city", "page_view_rank")
+        url_city_format = format_data(url_city)
+        x_city = []
+        y_pv_0 = []
+        y_pv_1 = []
+        y_pv_2 = []
+
+        for k, v in url_city_format.iteritems():
+            x_city.append(k)
+            y_pv_0.append(v[0])
+            y_pv_1.append(v[1])
+            y_pv_2.append(v[2])
+
 
         data = {
             "url_traffic_data": url_traffic_pvtr_data,
