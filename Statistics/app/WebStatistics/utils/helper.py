@@ -1,11 +1,12 @@
-x = [
-
-   {'url': u'/member', 'city': u'chongqin', 'page_view': 9L},
-    {'url': u'/member', 'city': u'chongqin', 'page_view': 99L},
-   {'url': u'/api.php?', 'city': u'chongqin', 'page_view': 669L},
-{'url': u'/api.php?', 'city': u'chongqin', 'page_view': 9L},
-
-]
+# -*- coding: utf-8 -*-
+# x = [
+#
+#    {'url': u'/member', 'city': u'chongqin', 'page_view': 9L},
+#     {'url': u'/member', 'city': u'chongqin', 'page_view': 99L},
+#    {'url': u'/api.php?', 'city': u'chongqin', 'page_view': 669L},
+# {'url': u'/api.php?', 'city': u'chongqin', 'page_view': 9L},
+#
+# ]
 
 
 def format_data_url(data):
@@ -30,6 +31,7 @@ def format_data_url(data):
     return data_format
 
 
+# format_data有bug待修复
 def format_data(data):
     """
     [{'url': u'/api.php?m', 'city': u'guangdong', 'page_view': 865L},
@@ -51,6 +53,3 @@ def format_data(data):
                 url_pv.insert(0, data[j].get("page_view"))
         data_format[city_a] = url_pv
     return data_format
-
-
-print format_data(x)

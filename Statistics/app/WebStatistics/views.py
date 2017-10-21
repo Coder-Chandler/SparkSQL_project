@@ -28,7 +28,7 @@ class Charts(APIView):
     permission_classes = []
 
     def get(self, request, format=None):
-        # DayUrlPvTraffic
+        # WebStatistics
         day = DayUrlPvTraffic.objects.values("day")[:6]
         urls_orderby_traffic = DayUrlPvTraffic.objects.values("url").order_by("-traffic_sums")[:6]
         urls_orderby_pageview = DayUrlPvTraffic.objects.values("url").order_by("-page_view")[:6]
@@ -86,18 +86,18 @@ class Charts(APIView):
         page_view_ipstat_data = y_pageview_ipstat
 
         # UrlCityStatistics
-        url_city = UrlCityStatistics.objects.values("city", "url", "page_view").order_by("city", "page_view_rank")
-        url_city_format = format_data(url_city)
-        x_city = []
-        y_pv_0 = []
-        y_pv_1 = []
-        y_pv_2 = []
-
-        for k, v in url_city_format.iteritems():
-            x_city.append(k)
-            y_pv_0.append(v[0])
-            y_pv_1.append(v[1])
-            y_pv_2.append(v[2])
+        # url_city = UrlCityStatistics.objects.values("city", "url", "page_view").order_by("city", "page_view_rank")
+        # url_city_format = format_data(url_city)
+        # x_city = []
+        # y_pv_0 = []
+        # y_pv_1 = []
+        # y_pv_2 = []
+        #
+        # for k, v in url_city_format.iteritems():
+        #     x_city.append(k)
+        #     y_pv_0.append(v[0])
+        #     y_pv_1.append(v[1])
+        #     y_pv_2.append(v[2])
 
 
         data = {
