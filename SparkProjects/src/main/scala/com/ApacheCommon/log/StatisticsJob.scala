@@ -24,10 +24,10 @@ object StatisticsJob {
     urlPvTrafficStatistics(spark, accessdataframe, day)
 
     //计算按照地理区域统计
-    urlAreaStatistics(spark, accessdataframe, day)
+    //urlAreaStatistics(spark, accessdataframe, day)
 
     //ip相关统计
-    IpAddressStatistics(spark, accessdataframe, day)
+    //IpAddressStatistics(spark, accessdataframe, day)
 
     spark.stop()
   }

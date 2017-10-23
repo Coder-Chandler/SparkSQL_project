@@ -37,6 +37,9 @@ object SparkStartCleanJob {
 
     val accessdataframe = accessDFclean.filter("traffic!=0")
 
+//    accessDFclean.createOrReplaceTempView("tmp")
+//    spark.sql("show tables").show()
+//    spark.sql("select url, traffic from tmp where url like '%member.php?mod=register%' ").show(1000,false)
     //以csv的格式写入到本地
     //accessdataframe.coalesce(1).write.format("csv")
       //.mode(SaveMode.Overwrite).partitionBy("day").save("/Users/chandler/Desktop/log_test")
