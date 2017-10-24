@@ -20,8 +20,7 @@ object StatisticsJobYarn {
     val Array(inputPath, day) = args
 
     val spark = SparkSession.builder()
-        .config("spark.sql.sources.partitionColumnTypeInference.enabled", "false")
-      .master("local[2]").getOrCreate()
+        .config("spark.sql.sources.partitionColumnTypeInference.enabled", "false").getOrCreate()
 
     val accessdataframe = spark.read.format("parquet").load(inputPath)
 
