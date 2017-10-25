@@ -16,32 +16,35 @@ object StatisticsJob {
 
     val accessdataframe = spark.read.format("parquet").load("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_2")
 
-    //先删除指定日期的数据再执行插入数据，保证数据不重复
+
     val day = "20130530"
+
+    import spark.implicits._
+    val common = accessdataframe.filter($"day" === day)
+
+    //先删除指定日期的数据再执行插入数据，保证数据不重复
     StatisticsDAO.deleteData(day)
 
     //计算url的PV和流量
-    urlPvTrafficStatistics(spark, accessdataframe, day)
+    urlPvTrafficStatistics(spark, common)
 
     //计算按照地理区域统计
-    //urlAreaStatistics(spark, accessdataframe, day)
+    urlAreaStatistics(spark, common)
 
     //ip相关统计
-    //IpAddressStatistics(spark, accessdataframe, day)
+    IpAddressStatistics(spark, common)
 
     spark.stop()
   }
 
   /**
     * 计算url的PV和流量
-    * @param spark
-    * @param accessdataframe
     */
-  def urlPvTrafficStatistics(spark: SparkSession, accessdataframe: DataFrame, day: String): Unit = {
+  def urlPvTrafficStatistics(spark: SparkSession, common: DataFrame): Unit = {
 
     import spark.implicits._
     // 按照url进行统计每个url的总流量和访问次数
-    val statistics_url_Pv_traffic = accessdataframe.filter($"day" === day)
+    val statistics_url_Pv_traffic = common
       .groupBy("day", "url")
       .agg(sum("traffic").as("traffic_sums"),count("traffic").as("page_view"),
         (sum("traffic")/count("traffic")).as("avg"))
@@ -71,14 +74,12 @@ object StatisticsJob {
 
   /**
     * 计算按照地理区域统计访问量最高的url topN访问次数
-    * @param spark
-    * @param accessdataframe
     */
-  def urlAreaStatistics(spark: SparkSession, accessdataframe: DataFrame, day: String): Unit = {
+  def urlAreaStatistics(spark: SparkSession, common: DataFrame): Unit = {
 
     import spark.implicits._
     // 按照地理区域统计访问量最高的url topN访问次数
-    val url_city_statistics = accessdataframe.filter($"day" === day)
+    val url_city_statistics = common
       .groupBy("day", "city", "url")
       .agg(sum("traffic").as("traffic_sums"),
         count("traffic").as("page_view"),
@@ -126,14 +127,12 @@ object StatisticsJob {
 
   /**
     * ip地址相关统计
-    * @param spark
-    * @param accessdataframe
     */
-  def IpAddressStatistics(spark: SparkSession, accessdataframe: DataFrame, day: String): Unit = {
+  def IpAddressStatistics(spark: SparkSession, common: DataFrame): Unit = {
 
     import spark.implicits._
     // 按照地理区域统计访问量最高的url topN访问次数
-    val ip_statistics = accessdataframe.filter($"day" === day)
+    val ip_statistics = common
       .groupBy("day", "ip")
       .agg(sum("traffic").as("traffic_sums"),
         count("traffic").as("page_view")

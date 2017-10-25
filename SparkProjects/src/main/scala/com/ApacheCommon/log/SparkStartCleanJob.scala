@@ -7,6 +7,7 @@ import org.apache.spark.sql.functions._
 object SparkStartCleanJob {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("SparkStartCleanJob")
+        .config("spark.sql.parquet.compression.codec", "gzip")
       .master("local[2]").getOrCreate()
 
     //把我们第一步清洗的log读进来
@@ -47,8 +48,8 @@ object SparkStartCleanJob {
 
 
     //以parquet的格式将清洗过的数据按照day分区存入HDFS里面去，注意coalesce表示输出为一个文件，这也是一个调优点
-//    accessdataframe.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
-//      .partitionBy("day").save("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_2")
+    accessdataframe.coalesce(1).write.format("parquet").mode(SaveMode.Overwrite)
+      .partitionBy("day").save("hdfs://localhost:8020/WEB_log/Apache_common/clean_data_gzip")
 
     spark.stop()
   }
