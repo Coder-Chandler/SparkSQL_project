@@ -15,8 +15,8 @@ object ShenFenZhengFormat {
 
     shenfenzheng.map(line => {
       val splits = line.split(",")
-      //判断分割后的每一行日志是否长度为10，目的为过滤掉缺少列数据的日志，防止写入数据过程报数组越界的错误
-      if (splits.length == 3) {
+      //判断分割后的每一行是否长度为33，防止写入数据过程报数组越界的错误
+      if (splits.length == 33) {
         val Id = splits(32)
         val Name = splits(0)
         val SFZ = splits(4)
@@ -29,7 +29,34 @@ object ShenFenZhengFormat {
         Id + "\t" + Name + "\t" + SFZ + "\t" + Gender + "\t" + Birthday+ "\t" +
           Address + "\t" + Mobile  + "\t" + Company  + "\t" + Data
       }
-    }).take(1).foreach(println)
+    })
+
+//    //导入隐式转换
+//    import spark.implicits._
+//    val shenfenzhengRDD = shenfenzhengformat.map(_.split("\t")).map(line => if(line.length==9) {
+//      Row(
+//        line(0), line(1), line(2), line(3), line(4), line(5), line(6), line(7), line(8)
+//      )} else {
+//      Row("", "", "", "", "", "", "", "", "")
+//    })
+//
+//    //定义一个Schema，我们用StructType来定义
+//    val structType = StructType(Array(
+//      StructField("Id",StringType , true),
+//      StructField("Name", StringType, true),
+//      StructField("SFZ", StringType, true),
+//      StructField("Gender", StringType, true),
+//      StructField("Birthday", StringType, true),
+//      StructField("Address", StringType, true),
+//      StructField("Mobile", StringType, true),
+//      StructField("Company", StringType, true),
+//      StructField("Data", StringType, true)))
+//
+//    val shenfenzhengDF = spark.createDataFrame(shenfenzhengRDD, structType)
+//
+//    //shenfenzhengDF.show(false)
+//    shenfenzhengDF.filter("Id <= 18100000").write.format("csv")
+//      .save("/Users/chandler/Desktop/SfzCleanData")
 
     spark.stop()
   }
