@@ -29,34 +29,7 @@ object ShenFenZhengFormat {
         Id + "\t" + Name + "\t" + SFZ + "\t" + Gender + "\t" + Birthday+ "\t" +
           Address + "\t" + Mobile  + "\t" + Company  + "\t" + Data
       }
-    })
-
-//    //导入隐式转换
-//    import spark.implicits._
-//    val shenfenzhengRDD = shenfenzhengformat.map(_.split("\t")).map(line => if(line.length==9) {
-//      Row(
-//        line(0), line(1), line(2), line(3), line(4), line(5), line(6), line(7), line(8)
-//      )} else {
-//      Row("", "", "", "", "", "", "", "", "")
-//    })
-//
-//    //定义一个Schema，我们用StructType来定义
-//    val structType = StructType(Array(
-//      StructField("Id",StringType , true),
-//      StructField("Name", StringType, true),
-//      StructField("SFZ", StringType, true),
-//      StructField("Gender", StringType, true),
-//      StructField("Birthday", StringType, true),
-//      StructField("Address", StringType, true),
-//      StructField("Mobile", StringType, true),
-//      StructField("Company", StringType, true),
-//      StructField("Data", StringType, true)))
-//
-//    val shenfenzhengDF = spark.createDataFrame(shenfenzhengRDD, structType)
-//
-//    //shenfenzhengDF.show(false)
-//    shenfenzhengDF.filter("Id <= 18100000").write.format("csv")
-//      .save("/Users/chandler/Desktop/SfzCleanData")
+    }).saveAsTextFile("/Users/chandler/Desktop/SfzCleanData")
 
     spark.stop()
   }

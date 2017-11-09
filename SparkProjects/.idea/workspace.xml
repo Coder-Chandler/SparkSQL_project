@@ -17,21 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SparkStartCleanJob.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/SparkStartCleanJob.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ShenFenZhengFormat.scala" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShenFenZhengFormat.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengFormat.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+            <state relative-caret-position="57">
+              <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
               <folding>
                 <element signature="e#30#102#0" expanded="true" />
               </folding>
@@ -39,11 +29,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShenFenZhengClean.scala" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RDD.scala" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Downloads/hadoop/apache-maven-3.3.9/maven_repos/org/apache/spark/spark-core_2.11/2.2.0/spark-core_2.11-2.2.0-sources.jar!/org/apache/spark/rdd/RDD.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="316">
+              <caret line="1495" column="55" lean-forward="true" selection-start-line="1495" selection-start-column="55" selection-end-line="1495" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ShenFenZhengClean.scala" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengClean.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+            <state relative-caret-position="99">
+              <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
               <folding>
                 <element signature="e#29#86#0" expanded="true" />
               </folding>
@@ -102,9 +102,9 @@
         <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/SparkStartCleanJob.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/StatisticsJob.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/SparkStartCleanJobYarn.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengClean.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/SparkStatFormat.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengFormat.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengClean.scala" />
       </list>
     </option>
   </component>
@@ -147,7 +147,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="800" />
@@ -304,15 +305,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ShenFenZhengFormat">
-    <configuration name="IpUtils (1)" type="Application" factoryName="Application" temporary="true">
+  <component name="RunManager" selected="Application.ShenFenZhengClean">
+    <configuration name="MySQLUtils" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.ApacheCommon.log.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="com.ApacheCommon.log.IpUtils" />
+      <option name="MAIN_CLASS_NAME" value="com.ApacheCommon.log.MySQLUtils" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -324,14 +325,14 @@
       <module name="SparkProjects" />
       <envs />
     </configuration>
-    <configuration name="MySQLUtils" type="Application" factoryName="Application" temporary="true">
+    <configuration name="ShenFenZhengClean" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.ApacheCommon.log.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="com.ApacheCommon.log.MySQLUtils" />
+      <option name="MAIN_CLASS_NAME" value="com.ApacheCommon.log.ShenFenZhengClean" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -482,19 +483,19 @@
       <listeners />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.IpUtils (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Application.SparkStartCleanJob (1)" />
-      <item index="2" class="java.lang.String" itemvalue="Application.StatisticsJob" />
-      <item index="3" class="java.lang.String" itemvalue="Application.MySQLUtils" />
-      <item index="4" class="java.lang.String" itemvalue="Application.ShenFenZhengFormat" />
+      <item index="0" class="java.lang.String" itemvalue="Application.SparkStartCleanJob (1)" />
+      <item index="1" class="java.lang.String" itemvalue="Application.StatisticsJob" />
+      <item index="2" class="java.lang.String" itemvalue="Application.MySQLUtils" />
+      <item index="3" class="java.lang.String" itemvalue="Application.ShenFenZhengFormat" />
+      <item index="4" class="java.lang.String" itemvalue="Application.ShenFenZhengClean" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ShenFenZhengFormat" />
-        <item index="1" class="java.lang.String" itemvalue="Application.StatisticsJob" />
-        <item index="2" class="java.lang.String" itemvalue="Application.SparkStartCleanJob (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Application.MySQLUtils" />
-        <item index="4" class="java.lang.String" itemvalue="Application.IpUtils (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ShenFenZhengClean" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ShenFenZhengFormat" />
+        <item index="2" class="java.lang.String" itemvalue="Application.StatisticsJob" />
+        <item index="3" class="java.lang.String" itemvalue="Application.SparkStartCleanJob (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Application.MySQLUtils" />
       </list>
     </recent_temporary>
   </component>
@@ -543,27 +544,27 @@
       <workItem from="1508901901101" duration="2374000" />
       <workItem from="1510110681233" duration="699000" />
       <workItem from="1510234732774" duration="65000" />
-      <workItem from="1510234801196" duration="7369000" />
+      <workItem from="1510234801196" duration="9579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="173424000" />
+    <option name="totallyTimeSpent" value="175634000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="-1" y="23" width="1440" height="800" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20677146" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20425531" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.617896" sideWeight="0.50572246" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3675937" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" x="0" y="0" width="1440" height="827" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5702128" sideWeight="0.49427754" order="11" side_tool="false" content_ui="tabs" x="0" y="0" width="1440" height="827" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -629,13 +630,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sales.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SparkProjects.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3700">
@@ -725,13 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
           <caret line="1148" column="0" lean-forward="false" selection-start-line="1148" selection-start-column="0" selection-end-line="1148" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/hadoop/apache-maven-3.3.9/maven_repos/org/apache/spark/spark-core_2.11/2.2.0/spark-core_2.11-2.2.0-sources.jar!/org/apache/spark/rdd/RDD.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="402" column="5" lean-forward="true" selection-start-line="402" selection-start-column="5" selection-end-line="402" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -939,7 +926,7 @@
         <state relative-caret-position="6">
           <caret line="7" column="41" lean-forward="true" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
           <folding>
-            <element signature="e#25#109#0" expanded="true" />
+            <element signature="e#25#109#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -962,28 +949,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/SparkStartCleanJob.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="17" column="26" lean-forward="false" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="26" />
+        <state relative-caret-position="578">
+          <caret line="51" column="93" lean-forward="true" selection-start-line="50" selection-start-column="4" selection-end-line="51" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengClean.scala">
+    <entry file="jar://$USER_HOME$/Downloads/hadoop/apache-maven-3.3.9/maven_repos/org/apache/spark/spark-catalyst_2.11/2.2.0/spark-catalyst_2.11-2.2.0-sources.jar!/org/apache/spark/sql/types/StructField.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="8" column="41" lean-forward="true" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
-          <folding>
-            <element signature="e#29#86#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-106">
+          <caret line="34" column="26" lean-forward="true" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Downloads/hadoop/apache-maven-3.3.9/maven_repos/org/apache/spark/spark-core_2.11/2.2.0/spark-core_2.11-2.2.0-sources.jar!/org/apache/spark/rdd/RDD.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="1495" column="55" lean-forward="true" selection-start-line="1495" selection-start-column="55" selection-end-line="1495" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengFormat.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="31" column="6" lean-forward="false" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        <state relative-caret-position="57">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
           <folding>
             <element signature="e#30#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/ApacheCommon/log/ShenFenZhengClean.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="33" column="47" lean-forward="true" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+          <folding>
+            <element signature="e#29#86#0" expanded="true" />
           </folding>
         </state>
       </provider>

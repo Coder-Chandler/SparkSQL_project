@@ -36,8 +36,11 @@ object ShenFenZhengClean {
 
     val shenfenzhengDF = spark.createDataFrame(shenfenzhengRDD, structType)
 
-    //shenfenzhengDF.show(false)
-    shenfenzhengDF.filter("Id <= 18100000").write.format("csv")
-      .save("/Users/chandler/Desktop/SfzCleanData")
+    val shenfenzhengOk = shenfenzhengDF.filter("Data!=''").filter("Id>19900000 and Id<=20000000")
+//    shenfenzhengDF.filter("Id > 18000000").filter("Id <= 18100000").write.format("csv")
+//      .save("/Users/chandler/Desktop/ShenFenZhengOk")
+
+    shenfenzhengOk.coalesce(1).write.format("csv").mode(SaveMode.Overwrite)
+      .save("/Users/chandler/Desktop/ShenFenZheng")
   }
 }
