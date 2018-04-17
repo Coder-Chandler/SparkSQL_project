@@ -12,18 +12,18 @@ object HiveMySQLApp {
       .master("local[2]").getOrCreate()
 
     // 加载Hive表数据
-    val hiveDF = spark.table("emp")
+//    val hiveDF = spark.table("emp")
 
     // 加载MySQL表数据
-    val mysqlDF = spark.read.format("jdbc").option("url", "jdbc:mysql://localhost:3306").option("dbtable", "spark.DEPT").option("user", "root").option("password", "chuchu910408").option("driver", "com.mysql.jdbc.Driver").load()
+    val mysql_zhihuanswer_DF = spark.read.format("jdbc").option("url", "jdbc:mysql://localhost:3306").option("dbtable", "spider.zhihu_answer").option("user", "root").option("password", "chuchu910408").option("driver", "com.mysql.jdbc.Driver").load()
+    val mysql_zhihuquestion_DF = spark.read.format("jdbc").option("url", "jdbc:mysql://localhost:3306").option("dbtable", "spider.zhihu_question").option("user", "root").option("password", "chuchu910408").option("driver", "com.mysql.jdbc.Driver").load()
 
     // JOIN
-    val resultDF = hiveDF.join(mysqlDF, hiveDF.col("deptno") === mysqlDF.col("DEPTNO"))
+    val resultDF = mysql_zhihuquestion_DF.join(mysql_zhihuanswer_DF, mysql_zhihuanswer_DF.col("question_id") === mysql_zhihuquestion_DF.col("zhihu_id"))
     resultDF.show
 
-
-    resultDF.select(hiveDF.col("empno"),hiveDF.col("ename"),
-      mysqlDF.col("deptno"), mysqlDF.col("dname")).show
+//    resultDF.select(hiveDF.col("empno"),hiveDF.col("ename"),
+//      mysqlDF.col("deptno"), mysqlDF.col("dname")).show
 
     spark.stop()
   }
